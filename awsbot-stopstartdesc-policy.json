@@ -2,7 +2,6 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Stmt1476608537000",
             "Effect": "Allow",
             "Action": [
                 "ec2:DescribeInstances",
