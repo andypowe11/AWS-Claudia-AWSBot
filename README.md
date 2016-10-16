@@ -19,26 +19,52 @@ https://claudiajs.com/.
 
 ## Installation
 
-See https://claudiajs.com/tutorials/hello-world-chatbot.html.
+Install Claudia.js with:
 
+    npm install claudia -g
 
-Follow the tutorial but use the following commands:
+Then read https://claudiajs.com/tutorials/hello-world-chatbot.html.
+
+Follow the tutorial and create a project folder
+but use the following commands:
 
     npm init
+
+Give your bot a name - e.g. awsbot - and description and put your email address
+as author. Leave everything else as is. Then install the dependencies with:
+
     npm install claudia-bot-builder -S
     npm install promise-delay -S
     npm install aws-sdk -S
 
 Put bot.js in the project folder.
 
+Follow https://claudiajs.com/tutorials/installing.html to give Claudia.js
+enough AWS access to deploy the Lambda function and API Gateway.
+
 Deploy to AWS with the following command:
 
-    claudia create --region eu-west-1 --api-module bot  --configure-slack-slash-app
+    claudia create --region eu-west-1 --api-module bot
 
-Go to https://api.slack.com/ to configure your Slack team.
+Go to https://api.slack.com/ to configure a new integration
+for your Slack team. Then run:
+
+    claudia update --region eu-west-1 --api-module bot --timeout 120 --allow-recursion --configure-slack-slash-command
+
+Finally, you need to add the 'AmazonEC2FullAccess' policy to the newly
+created role ('awsbot-executor' if you use the naming above).
 
 That's it, you're done.
 
 If you modify the bot.js code, you can redeploy with:
 
-    claudia create --region eu-west-1 --api-module bot
+    claudia update --region eu-west-1 --api-module bot
+
+To delete everything, detach the 'AmazonEC2FullAccess' policy from the bot's
+role and then try the following:
+
+    claudia destroy
+    rm claudia.json
+
+However, sometimes this doesn't seem to work reliably. If so, manually delete
+the stuff created under IAM Roles, Lambda functions and API Gateway.
