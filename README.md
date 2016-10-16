@@ -70,7 +70,7 @@ If you modify the bot.js code, you can redeploy with:
 
 ## Unstallation
 
-To delete everything, detach the 'AmazonEC2FullAccess' policy from the bot's
+To delete everything, remove the 'awsbot-stopstartdesc-policy' policy from the bot's
 IAM role and then try the following:
 
     claudia destroy
