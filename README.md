@@ -56,8 +56,10 @@ for your Slack team. Then run:
 
     claudia update --region eu-west-1 --api-module bot --timeout 120 --allow-recursion --configure-slack-slash-command
 
-Finally, you need to manually add the 'AmazonEC2FullAccess' policy to the newly
-created IAM role ('awsbot-executor' if you use my suggested naming).
+Finally, you need to manually add the IAM policy in
+awsbot-stopstartdesc-policy.json to the newly
+created IAM role (which is called 'awsbot-executor'
+if you use my suggested naming).
 DO NOT DO THIS before running the 'claudia update' command above.
 
 That's it, you're done.
