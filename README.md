@@ -57,8 +57,8 @@ for your Slack team. Then run:
     claudia update --region eu-west-1 --api-module bot --timeout 120 --allow-recursion --configure-slack-slash-command
 
 Finally, you need to manually add the 'AmazonEC2FullAccess' policy to the newly
-created role ('awsbot-executor' if you use the naming above). DO NOT DO THIS
-before running the 'claudia update' command above.
+created IAM role ('awsbot-executor' if you use my suggested naming).
+DO NOT DO THIS before running the 'claudia update' command above.
 
 That's it, you're done.
 
@@ -69,7 +69,7 @@ If you modify the bot.js code, you can redeploy with:
 ## Uninstallation
 
 To delete everything, detach the 'AmazonEC2FullAccess' policy from the bot's
-role and then try the following:
+IAM role and then try the following:
 
     claudia destroy
     rm claudia.json
