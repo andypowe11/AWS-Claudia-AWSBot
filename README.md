@@ -39,10 +39,14 @@ as author. Leave everything else as is. Then install the dependencies with:
 
 Put bot.js in the project folder.
 
+Edit the two arrays (starters and stoppers) at the top of bot.js to configure
+the names of any instances you want your Slack users to be able
+to stop and start (the lists can be different).
+
 Follow https://claudiajs.com/tutorials/installing.html to give Claudia.js
 enough AWS access to deploy the Lambda function and API Gateway.
 
-Deploy to AWS with the following command:
+Then deploy your bot to AWS with the following command:
 
     claudia create --region eu-west-1 --api-module bot
 
@@ -52,13 +56,16 @@ for your Slack team. Then run:
     claudia update --region eu-west-1 --api-module bot --timeout 120 --allow-recursion --configure-slack-slash-command
 
 Finally, you need to add the 'AmazonEC2FullAccess' policy to the newly
-created role ('awsbot-executor' if you use the naming above).
+created role ('awsbot-executor' if you use the naming above). DO NOT DO THIS
+before running the 'claudia update' command above.
 
 That's it, you're done.
 
 If you modify the bot.js code, you can redeploy with:
 
     claudia update --region eu-west-1 --api-module bot
+
+## Uninstallation
 
 To delete everything, detach the 'AmazonEC2FullAccess' policy from the bot's
 role and then try the following:
