@@ -151,9 +151,13 @@ api.intercept((event) => {
     if (action == 'stop') iname = message.text.substr(5);
     var ec2 = new AWS.EC2();
     return new Promise((resolve, reject) => {
-      if (starters.indexOf(iname) == -1) {
-        if (starters.length > 0) {
-          resp = "Sorry, I'm not allowed to "+action+" "+iname+" - I can only "+action+" one of the following: "+starters.join(', ');
+      if ((action == 'start' && starters.indexOf(iname) == -1) ||
+          (action == 'stop' && stoppers.indexOf(iname) == -1)) {
+        if ((action == 'start' && starters.length > 0) ||
+            (action == 'stop' && stoppers.length > 0)) {
+          resp = "Sorry, I'm not allowed to "+action+" "+iname+" - I can only "+action+" one of the following: ";
+          if (action == 'start') resp += starters.join(', ');
+          if (action == 'stop') resp += stoppers.join(', ');
         }
         else {
           resp = "Sorry, I'm not allowed to "+action+" anything.";
