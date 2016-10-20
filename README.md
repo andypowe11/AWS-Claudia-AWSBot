@@ -68,7 +68,7 @@ If you modify the bot.js code, you can redeploy with:
 
     claudia update --region eu-west-1 --api-module bot
 
-## Unstallation
+## Removal
 
 To delete everything, remove the 'awsbot-stopstartdesc-policy' policy from the bot's
 IAM role and then try the following:
