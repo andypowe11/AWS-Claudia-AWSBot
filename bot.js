@@ -75,13 +75,13 @@ const api = botBuilder((message, apiRequest) => {
 // if so, avoid normal procesing, running a delayed response instead
 
 api.intercept((event) => {
-  if (!event.proxyRequest.slackEvent) // if this is a normal web request, let it run
+  if (!event.slackEvent) // if this is a normal web request, let it run
     return event;
 
   // console.log('Received slackEvent:', JSON.stringify(event, null, 2));
   var resp = '';
   var mydata;
-  const message = event.proxyRequest.slackEvent;
+  const message = event.slackEvent;
   // console.log('Message:', JSON.stringify(message, null, 2));
   // console.log('Message:', message.text);
 
