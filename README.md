@@ -66,7 +66,7 @@ That's it, you're done.
 
 If you modify the bot.js code, you can redeploy with:
 
-    claudia update --region eu-west-1 --api-module bot
+    claudia update
 
 ## Removal
 
