@@ -1,3 +1,5 @@
+'use strict';
+
 const promiseDelay = require('promise-delay');
 const AWS = require('aws-sdk');
 const botBuilder = require('claudia-bot-builder');
@@ -102,7 +104,7 @@ api.intercept((event) => {
         if (message.text == 'show stopped') resp += "stopped ";
         resp += "AWS instances: \n";
         // console.log('Response:', JSON.stringify(mydata, null, 2) + "\n");
-        var iname, iid, iowner, istate;
+        var iname, iid, iowner, istate, ipubip;
         var r, i, t;
         for (r=0; r < mydata.Reservations.length; ++r) {
           for (i=0; i < mydata.Reservations[r].Instances.length; ++i) {
